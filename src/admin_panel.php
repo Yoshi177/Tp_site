@@ -104,7 +104,7 @@ $user = $_SESSION['user'];
   <body>
     <nav class="navbar navbar-dark bg-dark fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/dashboard.php">Навигационная панель</a>
+        <a class="navbar-brand" href="/src/admin_panel.php">Навигационная панель</a>
         <button
           class="navbar-toggler text-align: right"
           type="button"
@@ -141,10 +141,10 @@ $user = $_SESSION['user'];
                 <a class="nav-link active" aria-current="page" href="/src/manage_users.php">Составить список рабочих</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Составить список изделий</a>
+                <a class="nav-link active" aria-current="page" href="/src/manage_products.php">Составить список изделий</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Составить список деталей</a>
+                <a class="nav-link active" aria-current="page" href="/src/manage_details.php">Составить список деталей</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link text-danger" href="/src/logout.php">Выйти</a>
