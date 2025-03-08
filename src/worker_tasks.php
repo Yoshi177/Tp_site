@@ -135,7 +135,13 @@ $user = $_SESSION['user'];
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Работа с деталью</a>
+                <a class="nav-link active" aria-current="page" href="/src/manage_details_worker.php">Работа с деталью</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/src/manage_products_worker.php">Работа с изделием</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/src/check_lists.php">Проверить списки сборки от инженера</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link text-danger" href="/src/logout.php">Выйти</a>

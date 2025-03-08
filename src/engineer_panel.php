@@ -135,16 +135,16 @@ $user = $_SESSION['user'];
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Определение последовательности сборки</a>
+                <a class="nav-link active" aria-current="page" href="/src/queue_of_lists.php">Определение последовательности сборки</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Слежение за процессом сборки</a>
+                <a class="nav-link active" aria-current="page" href="/src/manage_work_with_products.php">Слежение за процессом сборки</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Составление списка детелей, необходимых для сборки</a>
+                <a class="nav-link active" aria-current="page" href="/src/manage_list_for_workers.php">Составление списка детелей, необходимых для сборки</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Прием готовых изделий</a>
+                <a class="nav-link active" aria-current="page" href="/src/tracking_construction.php">Прием готовых изделий</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link text-danger" href="/src/logout.php">Выйти</a>

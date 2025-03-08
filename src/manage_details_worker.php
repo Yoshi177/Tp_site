@@ -44,7 +44,7 @@ $result = $conn->query($sql);
 <body>
 <nav class="navbar navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/src/admin_panel.php">Навигационная панель</a>
+        <a class="navbar-brand" href="/src/worker_tasks.php">Навигационная панель</a>
         <button
             class="navbar-toggler"
             type="button"
@@ -72,14 +72,11 @@ $result = $conn->query($sql);
             </div>
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <!-- <li class="nav-item">
-                        <a class="nav-link active" href="/registrationUsers.html">Зарегистрировать нового пользователя</a>
-                    </li> -->
                     <li class="nav-item">
-                        <a class="nav-link active" href="/src/manage_users.php">Составить список рабочих</a>
+                        <a class="nav-link active" href="/src/manage_products_worker.php">Работа с изделием</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="/src/manage_products.php">Составить список изделий</a>
+                        <a class="nav-link active" href="/src/check_lists.php">Проверить списки сборки от инженера</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-danger" href="/src/logout.php">Выйти</a>
@@ -91,7 +88,7 @@ $result = $conn->query($sql);
 </nav>
 
 <div class="container">
-    <h1 class="text-center">Управление деталями</h1>
+    <h1 class="text-center">Каталог деталей</h1>
 
     <?php if (isset($_GET['success'])): ?>
         <div class="alert alert-success"><?php echo htmlspecialchars($_GET['success']); ?></div>
@@ -105,7 +102,7 @@ $result = $conn->query($sql);
         <tr>
             <th>ID</th>
             <th>Состояние</th>
-            <th>Действия</th>
+            <th>Использовние</th>
         </tr>
         </thead>
         <tbody>
@@ -113,16 +110,28 @@ $result = $conn->query($sql);
             <tr>
                 <td><?php echo $row['id']; ?></td>
                 <td><?php echo htmlspecialchars($row['status']); ?></td>
-                <td>
+                <!-- <td>
                     <a href="delete_detail.php?id=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm">Удалить</a>
                     <a href="edit_detail.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm">Редактировать</a>
+                </td> -->
+                <td>
+                <?php 
+                // Проверяем значение поля set_in
+                if ($row['set_in'] == 0) {
+                    echo "Не установлена";
+                } elseif ($row['set_in'] == 1) {
+                    echo "Установлена";
+                } else {
+                    echo "Неизвестно"; // На случай, если set_in имеет неожиданное значение
+                }
+                ?>
                 </td>
             </tr>
         <?php endwhile; ?>
         </tbody>
     </table>
 
-    <!-- Форма добавления детали -->
+    <!-- Форма добавления детали 
     <h2 class="mt-5 text-center">Добавить новую деталь</h2>
     <form action="add_detail_handler.php" method="post" class="mt-3">
         <div class="mb-3">
@@ -132,7 +141,7 @@ $result = $conn->query($sql);
         <div class="d-grid">
             <button type="submit" class="btn btn-primary">Добавить деталь</button>
         </div>
-    </form>
+    </form> -->
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

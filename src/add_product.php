@@ -78,7 +78,7 @@ $result = $conn->query($sql);
           </div>
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link active" href="/src/admin_panel.php">Панель администратора</a>
             </li>
               <li class="nav-item">
@@ -92,7 +92,7 @@ $result = $conn->query($sql);
               </li>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/src/manage_details.php">Составить список деталей</a>
-              </li>
+              </li> -->
               <li class="nav-item">
                   <a class="nav-link text-danger" href="/src/logout.php">Выйти</a>
               </li>
@@ -116,13 +116,13 @@ $result = $conn->query($sql);
         <!-- Состояние изделия -->
         <div class="mb-3">
             <label for="status" class="form-label">Состояние изделия</label>
-            <input type="text" class="form-control" id="status" name="status" placeholder="Введите состояние изделия" required>
+            <input type="text" class="form-control" id="status" name="status" placeholder="Введите состояние изделия">
         </div>
 
         <!-- Выбор детали -->
-        <div class="mb-3">
+        <!--<div class="mb-3">
             <label for="detail_id" class="form-label">Выберите деталь</label>
-            <select class="form-select" id="detail_id" name="detail_id" required>
+            <select class="form-select" id="detail_id" name="detail_id">
                 <option value="" disabled selected>Выберите деталь</option>
                 <?php while ($row = $result->fetch_assoc()): ?>
                     <option value="<?php echo $row['id']; ?>">
@@ -130,7 +130,7 @@ $result = $conn->query($sql);
                     </option>
                 <?php endwhile; ?>
             </select>
-        </div>
+        </div> -->
 
         <!-- Кнопка отправки -->
         <div class="d-grid">

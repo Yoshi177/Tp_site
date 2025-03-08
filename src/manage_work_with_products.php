@@ -15,12 +15,12 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <title>Управление изделиями</title>
+    <title>Просмотр готовности изделий</title>
 </head>
 <body>
 <nav class="navbar navbar-dark bg-dark fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/src/admin_panel.php">Навигационная панель</a>
+        <a class="navbar-brand" href="/src/engineer_panel.php">Навигационная панель</a>
         <button
           class="navbar-toggler text-align: right"
           type="button"
@@ -50,14 +50,17 @@ $result = $conn->query($sql);
           </div>
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/src/queue_of_lists.php">Определение последовательности сборки</a>
+              </li>
               <!-- <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/registrationUsers.html">Зарегистрировать нового пользователя</a>
+                <a class="nav-link active" aria-current="page" href="/src/manage_work_with_products.php">Слежение за процессом сборки</a>
               </li> -->
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/src/manage_users.php">Составить список рабочих</a>
+                <a class="nav-link active" aria-current="page" href="/src/manage_list_for_workers.php">Составление списка детелей, необходимых для сборки</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/src/manage_details.php">Составить список деталей</a>
+                <a class="nav-link active" aria-current="page" href="/src/tracking_construction.php">Прием готовых изделий</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link text-danger" href="/src/logout.php">Выйти</a>
@@ -68,15 +71,15 @@ $result = $conn->query($sql);
       </div>
     </nav>
 <div class="container mt-5">
-    <h1 class="mb-4">Управление изделиями</h1>
+    <h1 class="mb-4">Слежение за процессом сборки</h1>
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
         <tr>
             <th>ID</th>
             <th>Состояние</th>
             <th>Деталь (ID)</th>
-            <th>Одобрено инженерами</th>
-            <th>Действия</th>
+            <!--<th>Одобрено инженерами</th>
+            <th>Действия</th>-->
         </tr>
         </thead>
         <tbody>
@@ -86,9 +89,10 @@ $result = $conn->query($sql);
                     <td><?= $row['id'] ?></td>
                     <td><?= $row['status'] ?></td>
                     <td>
-                        <?= $row['detail_id'] ? $row['detail_id'] . " (" . $row['detail_status'] . ")" : "Нет детали" ?>
+                        <?= $row['detail_id'] > 0 ? $row['detail_id'] . " (" . $row['detail_status'] . ") - Изделие готово" : ($row['detail_id'] == 0 ? "Изделие в процессе изготовления" : "Нет детали") ?>
+
                     </td>
-                    <td style="<?= $row['approved'] === null ? 'color: red;' : ($row['approved'] == 0 ? 'color: red;' : ($row['approved'] == 1 ? 'color: green;' : ($row['approved'] == 2 ? 'color: orange;' : ''))); ?>">
+                    <!-- <td style="<?= $row['approved'] === null ? 'color: red;' : ($row['approved'] == 0 ? 'color: red;' : ($row['approved'] == 1 ? 'color: green;' : ($row['approved'] == 2 ? 'color: orange;' : ''))); ?>">
 
                         <?php 
                         if ($row['approved'] === null || $row['approved'] == 0) {
@@ -101,9 +105,9 @@ $result = $conn->query($sql);
                         ?>
                     </td>
                     <td>
-                        <!-- <a href="edit_product.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Редактировать</a> -->
+                        <a href="edit_product.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Редактировать</a>
                         <a href="delete_product.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Удалить изделие?')">Удалить</a>
-                    </td>
+                    </td> -->
                 </tr>
             <?php endwhile; ?>
         <?php else: ?>
@@ -113,7 +117,7 @@ $result = $conn->query($sql);
         <?php endif; ?>
         </tbody>
     </table>
-    <a href="add_product.php" class="btn btn-success">Добавить изделие</a>
+    <!-- <a href="add_product.php" class="btn btn-success">Добавить изделие</a> -->
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>

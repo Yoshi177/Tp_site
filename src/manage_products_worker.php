@@ -3,10 +3,9 @@ require_once('db.php');
 
 // Получаем данные изделий
 $sql = "
-    SELECT p.id, p.status, p.approved, d.id AS detail_id, d.status AS detail_status
+    SELECT p.id, p.status, d.id AS detail_id, d.status AS detail_status
     FROM products p
     LEFT JOIN details d ON p.detail_id = d.id";
-
 $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
@@ -20,7 +19,7 @@ $result = $conn->query($sql);
 <body>
 <nav class="navbar navbar-dark bg-dark fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/src/admin_panel.php">Навигационная панель</a>
+        <a class="navbar-brand" href="/src/worker_tasks.php">Навигационная панель</a>
         <button
           class="navbar-toggler text-align: right"
           type="button"
@@ -50,14 +49,11 @@ $result = $conn->query($sql);
           </div>
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <!-- <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/registrationUsers.html">Зарегистрировать нового пользователя</a>
-              </li> -->
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/src/manage_users.php">Составить список рабочих</a>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/src/manage_details_worker.php">Список деталей</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/src/manage_details.php">Составить список деталей</a>
+                <a class="nav-link active" aria-current="page" href="/src/check_lists.php">Проверить списки сборки от инженера</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link text-danger" href="/src/logout.php">Выйти</a>
@@ -75,7 +71,6 @@ $result = $conn->query($sql);
             <th>ID</th>
             <th>Состояние</th>
             <th>Деталь (ID)</th>
-            <th>Одобрено инженерами</th>
             <th>Действия</th>
         </tr>
         </thead>
@@ -88,21 +83,9 @@ $result = $conn->query($sql);
                     <td>
                         <?= $row['detail_id'] ? $row['detail_id'] . " (" . $row['detail_status'] . ")" : "Нет детали" ?>
                     </td>
-                    <td style="<?= $row['approved'] === null ? 'color: red;' : ($row['approved'] == 0 ? 'color: red;' : ($row['approved'] == 1 ? 'color: green;' : ($row['approved'] == 2 ? 'color: orange;' : ''))); ?>">
-
-                        <?php 
-                        if ($row['approved'] === null || $row['approved'] == 0) {
-                            echo "Не прошло проверку";
-                        } else if($row['approved'] == 2){
-                            echo "Не одобрено";
-                        } else {
-                            echo "Одобрено";
-                        }
-                        ?>
-                    </td>
                     <td>
-                        <!-- <a href="edit_product.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Редактировать</a> -->
-                        <a href="delete_product.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Удалить изделие?')">Удалить</a>
+                        <a href="edit_product.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Собрать</a>
+                        <!--<a href="delete_product.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Удалить изделие?')">Удалить</a> -->
                     </td>
                 </tr>
             <?php endwhile; ?>
@@ -113,7 +96,7 @@ $result = $conn->query($sql);
         <?php endif; ?>
         </tbody>
     </table>
-    <a href="add_product.php" class="btn btn-success">Добавить изделие</a>
+    <!-- <a href="add_product.php" class="btn btn-success">Добавить изделие</a> -->
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>

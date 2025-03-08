@@ -134,9 +134,9 @@ $result = $conn->query($sql);
           </div>
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/registrationUsers.html">Зарегистрировать нового пользователя</a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/src/manage_products.php">Составить список изделий</a>
               </li>
